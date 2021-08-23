@@ -6,7 +6,7 @@ Deno library for myself.
 import {} from 'https://raw.githubusercontent.com/0x-jerry/d-lib/v0.1.0/mod.ts'
 ```
 
-`import_map.json`
+Add these to `import_map.json`.
 
 ```json
 {
