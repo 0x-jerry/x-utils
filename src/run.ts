@@ -55,7 +55,7 @@ export async function run(
     stdin: 'inherit',
     stdout: 'inherit',
     log: true,
-    wait: true
+    wait: true,
   }
 
   // Is not option
@@ -92,7 +92,6 @@ const decoder = new TextDecoder()
 
 /**
  *
- * @deprecated Use `run` instead of.
  * @param cmd
  * @returns
  */
