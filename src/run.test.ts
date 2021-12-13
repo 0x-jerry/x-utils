@@ -1,4 +1,4 @@
-import { assertEquals, assertThrowsAsync } from 'testing/asserts.ts'
+import { assertEquals, assertRejects,  } from 'testing/asserts.ts'
 import { run } from './run.ts'
 
 const runPiped = (...args: string[]) =>
@@ -20,7 +20,7 @@ Deno.test('runPiped result', async () => {
 })
 
 Deno.test('runPiped throw error', async () => {
-  await assertThrowsAsync(async () => {
+  await assertRejects(async () => {
     await runPiped('xxx', 'hello')
   })
 })
