@@ -1,5 +1,2 @@
-export * from './src/homedir.ts'
-export * from './src/run.ts'
-export * from './src/which.ts'
-export * from './src/fs.ts'
 export * from './version.ts'
+export * from './src/mod.ts'
