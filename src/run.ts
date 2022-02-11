@@ -10,10 +10,15 @@ function getFormatCmd(cmd: string[]) {
 
 type RunOptions = Omit<Deno.RunOptions, 'cmd'> & {
   /**
+   * whether print to terminal.
+   * 
    * @default true
    */
   log?: boolean
+
   /**
+   * whether wait for the program to end.
+   * 
    * @default true
    */
   wait?: boolean
