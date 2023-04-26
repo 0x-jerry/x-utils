@@ -1,19 +1,7 @@
-# D-lib
+# X Utils
 
-Deno library for myself.
+Deno utils library for myself.
 
 ```ts
-import {} from 'https://raw.githubusercontent.com/0x-jerry/d-lib/v0.1.0/mod.ts'
-```
-
-Add these to `import_map.json`.
-
-```json
-{
-  "imports": {
-    "path/": "https://deno.land/std@0.101.0/path/",
-    "fmt/": "https://deno.land/std@0.101.0/fmt/",
-    "fs/": "https://deno.land/std@0.101.0/fs/"
-  }
-}
+import {} from 'https://raw.githubusercontent.com/0x-jerry/x-utils/v0.3.0/mod.ts'
 ```
