@@ -1,4 +1,4 @@
-import { assertEquals, assertRejects,  } from 'testing/asserts.ts'
+import { assertEquals, assertRejects } from '../devDeps.ts'
 import { run } from './run.ts'
 
 const runPiped = (...args: string[]) =>

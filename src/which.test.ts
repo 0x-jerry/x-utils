@@ -1,4 +1,4 @@
-import { assertEquals } from 'testing/asserts.ts'
+import { assertEquals } from '../devDeps.ts'
 import { which } from './which.ts'
 
 Deno.test('which, do not exist', async () => {

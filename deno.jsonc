@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "deno": "deno run -A",
+    "test": "deno test --allow-env --allow-read --allow-run"
+  }
+}

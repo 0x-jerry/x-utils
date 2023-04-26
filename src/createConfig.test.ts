@@ -1,5 +1,5 @@
 import { createConfig } from './createConfig.ts'
-import { assertEquals } from 'testing/asserts.ts'
+import { assertEquals } from '../devDeps.ts'
 
 interface IConf {
   test: number

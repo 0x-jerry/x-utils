@@ -1,4 +1,5 @@
-import { rgb24 } from 'fmt/colors.ts'
+import { colors } from '../deps.ts'
+const { rgb24 } = colors
 
 function getFormatCmd(cmd: string[]) {
   return [
@@ -11,14 +12,14 @@ function getFormatCmd(cmd: string[]) {
 type RunOptions = Omit<Deno.RunOptions, 'cmd'> & {
   /**
    * whether print to terminal.
-   * 
+   *
    * @default true
    */
   log?: boolean
 
   /**
    * whether wait for the program to end.
-   * 
+   *
    * @default true
    */
   wait?: boolean

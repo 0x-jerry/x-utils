@@ -1,4 +1,4 @@
-import { reactive, effect, UnwrapNestedRefs } from '@vue/reactivity'
+import { reactive, effect, UnwrapNestedRefs } from '../deps.ts'
 import { isObject } from './isObject.ts'
 
 type SaveFn<T> = (data: T) => void
