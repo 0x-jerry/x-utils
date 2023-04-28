@@ -1,15 +1,17 @@
 import { colors } from '../deps.ts'
 const { rgb24 } = colors
 
-function getFormatCmd(cmd: string[]) {
+function getFormatCmd(params: string[]) {
   return [
     '$',
-    // ['echo', 'hello world'] => $ echo 'hello world'
-    ...cmd.map((param) => (/\s/.test(param) ? `'${param}'` : param)),
+    // ['echo', 'hello world'] => $ echo "hello world"
+    ...params.map((param) =>
+      /\s/.test(param) ? JSON.stringify(param) : param,
+    ),
   ].join(' ')
 }
 
-type RunOptions = Omit<Deno.RunOptions, 'cmd'> & {
+type RunOptions = Omit<Deno.CommandOptions, 'args'> & {
   /**
    * whether print to terminal.
    *
@@ -35,7 +37,7 @@ type RunOptions = Omit<Deno.RunOptions, 'cmd'> & {
 export async function run<T extends RunOptions>(
   opt: T,
   ...cmd: string[]
-): Promise<Deno.Process<T & { cmd: string[] }>>
+): Promise<Deno.ChildProcess>
 /**
  * ```ts
  * run('echo', 'hello')
@@ -43,9 +45,7 @@ export async function run<T extends RunOptions>(
  * @param opt
  * @param cmd
  */
-export async function run(
-  ...cmd: string[]
-): Promise<Deno.Process<Deno.RunOptions>>
+export async function run(...cmd: string[]): Promise<Deno.ChildProcess>
 /**
  *
  * @param opt
@@ -55,7 +55,7 @@ export async function run(
 export async function run(
   opt: RunOptions | string,
   ...cmd: string[]
-): Promise<Deno.Process> {
+): Promise<Deno.ChildProcess> {
   const option: RunOptions = {
     stderr: 'inherit',
     stdin: 'inherit',
@@ -75,17 +75,20 @@ export async function run(
     console.log(rgb24(getFormatCmd(cmd), 0x999999))
   }
 
-  const program = Deno.run({
+  const [bin, ...args] = cmd
+
+  const command = new Deno.Command(bin, {
+    args: args,
     ...option,
-    cmd: cmd,
   })
+
+  const program = command.spawn()
 
   if (!option.wait) {
     return program
   }
 
-  const status = await program.status()
-  program.close()
+  const status = await program.status
 
   if (!status.success) {
     throw status
@@ -113,5 +116,6 @@ export async function runPiped(...cmd: string[]) {
   )
 
   const output = await program.output()
-  return decoder.decode(output).trim()
+
+  return decoder.decode(output.stdout).trim()
 }
